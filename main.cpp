@@ -56,13 +56,16 @@ int main(void)
     glBindVertexArray(0);
 
     Shader shaders("vertex.glsl","fragment.glsl");
+    float t = 0;
 
     while (!glfwWindowShouldClose(window))
     {
+        t += 0.001f;
         glClear(GL_COLOR_BUFFER_BIT);
 
         shaders.Bind();
         shaders.setVec2("resolution", 1280, 720);
+        shaders.setFloat("time", t);
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
